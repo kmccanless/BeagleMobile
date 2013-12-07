@@ -1,0 +1,32 @@
+{
+  "name": "BeagleMobile",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.4.6",
+    "jade": "*",
+    "socket.io": "~0.9.16"
+  },
+  "description": "ERROR: No README.md file found!",
+  "main": "app.js",
+   "dependencies": {
+       "socket.io" : "*",
+       "express" : "*"
+   },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kmccanless/BeagleMobile"
+  },
+  "keywords": [
+    "BeagleBone",
+    "Black",
+    "LED",
+    "mobile"
+  ],
+  "author": "Keith McCanless",
+  "license": "MIT"
+}
