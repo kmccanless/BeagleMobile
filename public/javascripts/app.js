@@ -5,7 +5,30 @@ $( document ).ready(function() {
     var yellowState = 0;
     var greenState = 0;
 
+    var recognition = new webkitSpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = "en_US";
+    recognition.onresult = function (event) {
+        console.log(event);
+        for (var i = event.resultIndex; i < event.results.length; ++i) {
+            var speechString = '';
+            if (event.results[i].isFinal) {
+                speechString += event.results[i][0].transcript;
 
+            }
+        }
+        socket.emit("speechAction",{speech : speechString});
+    };
+
+    $("#btnSpeechOn").click(function(){
+        recognition.start();
+        console.log("starting");
+    });
+    $("#btnSpeechOff").click(function(){
+        recognition.start();
+        console.log("starting");
+    });
     $("#btnRed").click(function(){
         redState = redState ? 0 : 1;
 

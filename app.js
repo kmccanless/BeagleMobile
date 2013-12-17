@@ -119,6 +119,20 @@ io.sockets.on("connection",function(socket){
         b.analogWrite(blueRGB, (data.value/100));
     });
 
+    socket.on('speechAction',function(data){
+        console.log(data.speech);
+        var speech = data.speech.toLowerCase();
+        if(speech.search('yellow on') > -1){
+            console.log('yellow on');
+            b.analogWrite(ledYellow, 1);
+        }
+        if(speech.search('yellow off') > -1){
+            console.log('yellow off');
+            b.analogWrite(ledYellow, 0);
+        }
+
+    });
+
 });
 
 console.log("Server listening on " + app.get('port'));

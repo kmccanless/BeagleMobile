@@ -10,7 +10,7 @@
     "express": "*",
     "jade": "~0.35.0"
   },
-  "description": "ERROR: No README.md file found!",
+  "description": "",
   "main": "app.js",
   "devDependencies": {},
   "repository": {
