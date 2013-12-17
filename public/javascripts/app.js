@@ -35,4 +35,14 @@ $( document ).ready(function() {
             socket.emit("greenLED",{state : 0})
         }
     });
+    
+    $('#sldrRed').change(function(){
+        socket.emit("redRGB",{value : this.value})
+    });
+    $('#sldrGreen').change(function(){
+        socket.emit("greenRGB",{value : this.value})
+    });
+    $('#sldrBlue').change(function(){
+        socket.emit("blueRGB",{value : this.value})
+    });
 });

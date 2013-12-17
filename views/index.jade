@@ -4,7 +4,26 @@ block content
     nav(class="navbar navbar-default navbar-fixed-top", role="navigation")
         div(class="navbar-header")
             span(class="navbar-brand") Beagle Mobile
+    br
+    br
+    h4 LEDs
     div(class="btn-group")
         button(type="button", id="btnRed", class="btn btn-primary",data-toggle="button") Red
         button(type="button", id="btnGreen", class="btn btn-primary",data-toggle="button") Green
         button(type="button", id="btnYellow", class="btn btn-primary",data-toggle="button") Yellow
+    br
+    br
+    div(class="well")
+        h4 RGB LED
+        br
+        label(for="sldrRed") Red slider:
+        br
+        input(type="range", name="sldrRed",id="sldrRed",value="0",min="0",max="100")
+        br
+        label(for="sldrGreen") Green slider:
+        br
+        input(type="range", name="sldrGreen",id="sldrGreen",value="0",min="0",max="100")
+        br
+        label(for="sldrBlue") Blue slider:
+        br
+        input(type="range", name="sldrBlue",id="sldrBlue",value="0",min="0",max="100")
