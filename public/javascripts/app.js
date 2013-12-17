@@ -1,6 +1,6 @@
 $( document ).ready(function() {
     console.log( "ready!" );
-    var socket = io.connect('http://localhost:3000');
+    var socket = io.connect('http://192.168.0.120:3100');
     var redState = 0;
     var yellowState = 0;
     var greenState = 0;
@@ -34,5 +34,15 @@ $( document ).ready(function() {
         } else {
             socket.emit("greenLED",{state : 0})
         }
+    });
+    
+    $('#sldrRed').change(function(){
+        socket.emit("redRGB",{value : this.value})
+    });
+    $('#sldrGreen').change(function(){
+        socket.emit("greenRGB",{value : this.value})
+    });
+    $('#sldrBlue').change(function(){
+        socket.emit("blueRGB",{value : this.value})
     });
 });
