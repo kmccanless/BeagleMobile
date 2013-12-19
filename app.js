@@ -5,7 +5,7 @@
 
 var express = require('express');
 var routes = require('./routes');
-var http = require('http');
+//var http = require('http');
 var path = require('path');
 var b = require('bonescript');
 
@@ -124,16 +124,26 @@ io.sockets.on("connection",function(socket){
         var speech = data.speech.toLowerCase();
         if(speech.search('yellow on') > -1){
             console.log('yellow on');
-            b.analogWrite(ledYellow, 1);
+            b.digitalWrite(yellowLED, b.HIGH);
         }
         if(speech.search('yellow off') > -1){
             console.log('yellow off');
-            b.analogWrite(ledYellow, 0);
+            b.digitalWrite(yellowLED, b.LOW);
         }
 
     });
+    socket.on('orientationHandler', function (data) {
+        console.log(" raw gamma " + data.gamma);
+       console.log("gamma = " + convertToRGB(data.gamma,-90, 90));
+       console.log(" raw beta " + data.beta);
+       console.log("beta " + convertToRGB(data.beta,-180, 180));
+       console.log(" raw alpha " + data.alpha);
+       console.log("alpha " + convertToRGB(data.alpha,0, 360));
+    });
 
 });
-
+function convertToRGB(value, min, max) {
+    return ((value - min) / (max - min) * (255 - 0))
+}
 console.log("Server listening on " + app.get('port'));
 
