@@ -133,17 +133,21 @@ io.sockets.on("connection",function(socket){
 
     });
     socket.on('orientationHandler', function (data) {
-        console.log(" raw gamma " + data.gamma);
-       console.log("gamma = " + convertToRGB(data.gamma,-90, 90));
-       console.log(" raw beta " + data.beta);
-       console.log("beta " + convertToRGB(data.beta,-180, 180));
-       console.log(" raw alpha " + data.alpha);
-       console.log("alpha " + convertToRGB(data.alpha,0, 360));
+       console.log(" raw gamma " + data.gamma);
+       console.log("gamma = " + convertToRGB(data.gamma,-360, 360));
+       b.analogWrite(blueRGB,convertToRGB(data.gamma,-360, 360));
+       //console.log(" raw beta " + data.beta);
+       //console.log("beta " + convertToRGB(data.beta,-180, 180));
+       b.analogWrite(greenRGB,convertToRGB(data.beta,-180, 180));
+       //console.log(" raw alpha " + data.alpha);
+       //console.log("alpha " + convertToRGB(data.alpha,0, 360));
+       b.analogWrite(redRGB,convertToRGB(data.alpha,0, 360));
     });
 
 });
 function convertToRGB(value, min, max) {
-    return ((value - min) / (max - min) * (255 - 0))
+    //(((OldValue - OldMin) * (NewMax - NewMin)) / (OldMax - OldMin)) + NewMin
+    return Math.abs((value - min) / (max-min));
 }
 console.log("Server listening on " + app.get('port'));
 

@@ -104,9 +104,9 @@ $( document ).ready(function() {
         redState = redState ? 0 : 1;
 
         if(redState) {
-            socket.emit("redLED",{state : 1})
+            socket.emit("redLED",{state : 1});
         } else {
-            socket.emit("redLED",{state : 0})
+            socket.emit("redLED",{state : 0});
         }
     });
     $("#btnMic").click(function(){
@@ -125,9 +125,9 @@ $( document ).ready(function() {
         yellowState = yellowState ? 0 : 1;
 
         if(yellowState) {
-            socket.emit("yellowLED",{state : 1})
+            socket.emit("yellowLED",{state : 1});
         } else {
-            socket.emit("yellowLED",{state : 0})
+            socket.emit("yellowLED",{state : 0});
         }
     });
 
@@ -135,9 +135,9 @@ $( document ).ready(function() {
         greenState = greenState ? 0 : 1;
 
         if(greenState) {
-            socket.emit("greenLED",{state : 1})
+            socket.emit("greenLED",{state : 1});
         } else {
-            socket.emit("greenLED",{state : 0})
+            socket.emit("greenLED",{state : 0});
         }
     });
     $("#btnOrientationOn").click(function(){
@@ -148,13 +148,13 @@ $( document ).ready(function() {
     });
     
     $('#sldrRed').change(function(){
-        socket.emit("redRGB",{value : this.value})
+        socket.emit("redRGB",{value : this.value});
     });
     $('#sldrGreen').change(function(){
-        socket.emit("greenRGB",{value : this.value})
+        socket.emit("greenRGB",{value : this.value});
     });
     $('#sldrBlue').change(function(){
-        socket.emit("blueRGB",{value : this.value})
+        socket.emit("blueRGB",{value : this.value});
     });
     
 });

@@ -36,6 +36,9 @@ block content
     br
     br
     h4 Device Orientation
-    div(class="btn-group")
-        button(type="button", id="btnOrientationOn", class="btn btn-primary",data-toggle="button") On
-        button(type="button", id="btnOrientationOff", class="btn btn-primary",data-toggle="button") Off
+
+    div(class="btn-group", data-toggle="button")
+        label(class="btn btn-primary")
+            input(type="radio", name="options", id="btnOrientationOn") On
+        label(class="btn btn-primary")
+            input(type="radio", name="options", id="btnOrientationOff") Off
