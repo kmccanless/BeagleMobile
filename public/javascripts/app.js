@@ -2,17 +2,23 @@ $( document ).ready(function() {
     console.log( "ready!" );
     //var socket = io.connect('http://192.168.0.120:3100');
     var socket = io.connect('http://12.109.108.100:3100');
+    socket.on('temp',function(data){
+        console.log('temp is ' + data.c);
+        $('#spanFahrenheit').text(data.f);
+        $('#spanCelcius').text(data.c);
+    });
     var redState = 0;
     var yellowState = 0;
     var greenState = 0;
     var orientation = false;
+    
     if (window.DeviceOrientationEvent) {
         window.addEventListener('deviceorientation', function(eventData) {            
           var gamma = eventData.gamma;
           var beta = eventData.beta;
           var alpha = eventData.alpha;
           if (orientation){
-            socket.emit("orientationHandler", {alpha : alpha, gamma : gamma, beta : beta});
+            socket.emit("orientationOn", {alpha : alpha, gamma : gamma, beta : beta});
           }
         }, false);
     }
@@ -146,6 +152,7 @@ $( document ).ready(function() {
     });
     $("#btnOrientationOff").click(function(){
        orientation = false;
+       socket.emit("orientationOff",{});
     });
     
     $('#sldrRed').change(function(){

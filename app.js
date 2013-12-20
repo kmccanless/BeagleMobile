@@ -80,7 +80,7 @@ io.configure('development', function(){
 //broadcast temp
 setInterval(function(){
     b.analogRead('P9_40', getTemp);
-    io.sockets.emit("temp",{fahrenheit : temp_f, celcius : temp_c});
+    io.sockets.emit("temp",{f : temp_f, c : temp_c});
 },300);
 
 io.sockets.on("connection",function(socket){
@@ -142,25 +142,29 @@ io.sockets.on("connection",function(socket){
         }
 
     });
-    socket.on('orientationHandler', function (data) {
-      // console.log(" raw gamma " + data.gamma);
-      // console.log("gamma = " + convertToRGB(data.gamma,-180, 180));
-       b.analogWrite(blueRGB,convertToRGB(data.gamma,-180, 180));
-     //  console.log(" raw beta " + data.beta);
-     //  console.log("beta " + convertToRGB(data.beta,-180, 180));
-       b.analogWrite(greenRGB,convertToRGB(data.beta,-180, 180));
-     //  console.log(" raw alpha " + data.alpha);
-     //  console.log("alpha " + convertToRGB(data.alpha,0, 360));
+    socket.on('orientationOn', function (data) {
+       //console.log(" raw gamma " + data.gamma);
+       //console.log("gamma = " + convertToRGB(data.gamma,0, 360));
+       b.analogWrite(blueRGB,convertToRGB(data.gamma,0, 360));
+       //console.log(" raw beta " + data.beta);
+       //console.log("beta " + convertToRGB(data.beta,-90, 90));
+       b.analogWrite(greenRGB,convertToRGB(data.beta,-90, 90));
+       console.log(" raw alpha " + data.alpha);
+       console.log("alpha " + convertToRGB(data.alpha,0, 360));
        b.analogWrite(redRGB,convertToRGB(data.alpha,0, 360));
+    });
+    
+     socket.on('orientationOff', function (data) {
+       b.analogWrite(blueRGB,0);
+       b.analogWrite(greenRGB,0);
+       b.analogWrite(redRGB,0);
     });
 
 });
 function convertToRGB(value, min, max) {
-     return Math.floor(Math.abs((value - min) / (max-min)));
+     return Math.abs((value - min) / (max-min));
 }
 function getTemp(x) {
-    console.log('x.value = ' + x.value);
-    console.log('x.err = ' + x.err);
     millivolts = x.value * 1800;
     temp_c = (millivolts - 500) / 10;
     temp_f = (temp_c * 9/5) + 32;
