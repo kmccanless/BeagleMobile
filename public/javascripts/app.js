@@ -1,6 +1,7 @@
 $( document ).ready(function() {
     console.log( "ready!" );
-    var socket = io.connect('http://192.168.0.120:3100');
+    //var socket = io.connect('http://192.168.0.120:3100');
+    var socket = io.connect('http://12.109.108.100:3100');
     var redState = 0;
     var yellowState = 0;
     var greenState = 0;

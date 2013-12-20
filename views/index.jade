@@ -6,6 +6,13 @@ block content
             span(class="navbar-brand") Beagle Mobile
     br
     br
+    h4 Temperature
+    span Fahrenheit &nbsp;&nbsp;
+    span#spanFahrenheit 
+    br
+    span Celcius &nbsp;&nbsp;
+    span#spanCelcius
+
     h4 LEDs
     div(class="btn-group")
         button(type="button", id="btnRed", class="btn btn-primary",data-toggle="button") Red
@@ -36,9 +43,6 @@ block content
     br
     br
     h4 Device Orientation
-
-    div(class="btn-group", data-toggle="button")
-        label(class="btn btn-primary")
-            input(type="radio", name="options", id="btnOrientationOn") On
-        label(class="btn btn-primary")
-            input(type="radio", name="options", id="btnOrientationOff") Off
+    
+    button#btnOrientationOn(class="btn btn-primary",type="button") On
+    button#btnOrientationOff(class="btn btn-primary",type="button") Off
